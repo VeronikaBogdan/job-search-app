@@ -14,16 +14,14 @@ export const HeaderContainer = styled(Container)`
   justify-content: center;
   align-items: center;
   position: relative;
-`;
+  margin-top: 0;
 
-export const Logo = styled(Image).attrs(({ src }) => ({
-  src: src,
-  alt: 'Jobored logo',
-}))`
-  width: 141px;
-  height: 36px;
-  position: absolute;
-  left: 0;
+  svg {
+    width: 141px;
+    height: 36px;
+    position: absolute;
+    left: 0;
+  }
 `;
 
 export const Links = styled.div`
@@ -31,7 +29,8 @@ export const Links = styled.div`
   justify-content: space-between;
   max-width: 275px;
   width: 100%;
-  padding: 32px 0;
+  padding: 32px 0px;
+  margin-right: 13px;
 `;
 
 export const StyledLink = styled(Link)`
