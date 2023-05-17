@@ -43,7 +43,12 @@ export const Filters = () => {
           </Button>
         </Group>
         <Select
-          classNames={{ ...classNames, item: classes.input, wrapper: classes.selectWrapper }}
+          classNames={{
+            ...classNames,
+            item: classes.input,
+            wrapper: classes.selectWrapper,
+            rightSection: classes.industryRightSection,
+          }}
           data={[
             { value: 'react', label: 'React' },
             { value: 'ng', label: 'Angular' },

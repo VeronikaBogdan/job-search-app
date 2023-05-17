@@ -26,8 +26,8 @@ export const Button = styled.button`
 `;
 
 export const SearchButton = styled(Button)`
-  margin-right: 1px;
+  margin-right: -1px;
   letter-spacing: 0.8px;
-  width: 98px;
+  width: 97px;
   height: 32px;
 `;

@@ -125,6 +125,11 @@ export const useStyles = createStyles((theme) => ({
       stroke: theme.colors.blue[1],
     },
   },
+  industryRightSection: {
+    ...useStyles.rightSection,
+    pointerEvents: 'none',
+    marginRight: '5px',
+  },
   control: {
     border: 0,
     padding: 0,
