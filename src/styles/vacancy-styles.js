@@ -16,15 +16,15 @@ export const useStyles = createStyles((theme) => ({
     marginLeft: '-14px',
     marginTop: '2px',
 
-    b: {
+    'p b': {
       fontWeight: '700',
       fontSize: '20px',
       lineHeight: '20px',
     },
-    ul: {
+    'ul, ol': {
       paddingLeft: '26px',
     },
-    'ul li': {
+    'ul li, ol li': {
       listStyle: 'initial',
       marginTop: '0',
     },

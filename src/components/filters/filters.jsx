@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useForm } from '@mantine/form';
 import { Box, Button, Group, NumberInput, Select, Title } from '@mantine/core';
-
-import { getVacancies } from '@/store/reducers/vacancies';
 
 import DownIcon from '../../assets/svg/down.svg';
 import CrossIcon from '../../assets/svg/cross.svg';
 
 import { useStyles } from './styled-filters';
 
-export const Filters = () => {
-  const dispatch = useDispatch();
+export const Filters = ({ onChangeFilteredData }) => {
   const form = useForm({
     initialValues: {
       catalogues: '',
@@ -36,7 +33,7 @@ export const Filters = () => {
   };
 
   const handleSubmit = (filteredData) => {
-    dispatch(getVacancies(filteredData));
+    onChangeFilteredData(filteredData);
   };
 
   return (

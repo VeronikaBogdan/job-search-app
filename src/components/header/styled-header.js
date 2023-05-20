@@ -15,13 +15,13 @@ export const HeaderContainer = styled(Container)`
   align-items: center;
   position: relative;
   margin-top: 0;
+`;
 
-  svg {
-    width: 141px;
-    height: 36px;
-    position: absolute;
-    left: 0;
-  }
+export const LogoLink = styled(Link)`
+  width: 141px;
+  height: 36px;
+  position: absolute;
+  left: 0;
 `;
 
 export const Links = styled.div`

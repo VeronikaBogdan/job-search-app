@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { getVacancies } from '@/store/reducers/vacancies';
 
 import SearchIcon from '../../assets/svg/search.svg';
 
 import { SearchInput, SearchWrapper } from './styled-search';
 import { SearchButton } from '../buttons/buttons';
 
-export const Search = () => {
-  const dispatch = useDispatch();
+export const Search = ({ onChangeSearch }) => {
   const [searchTitle, setSearchTitle] = useState('');
 
   const handleSearchTitle = (event) => {
@@ -17,7 +13,7 @@ export const Search = () => {
   };
 
   const handleSubmit = () => {
-    dispatch(getVacancies({ keyword: searchTitle }));
+    onChangeSearch({ keyword: searchTitle });
   };
 
   return (

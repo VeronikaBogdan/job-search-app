@@ -18,7 +18,7 @@ export const failAuth = (error) => ({
 
 const initialState = {
   authData: [],
-  loading: false,
+  loading: true,
   error: false,
 };
 

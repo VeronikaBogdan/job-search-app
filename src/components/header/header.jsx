@@ -3,7 +3,8 @@ import { useRouter } from 'next/router';
 
 import Logo from '../../assets/svg/logo.svg';
 
-import { HeaderContainer, Links, StyledHeader, StyledLink } from './styled-header';
+import { HeaderContainer, Links, LogoLink, StyledHeader, StyledLink } from './styled-header';
+import Link from 'next/link';
 
 export const Header = () => {
   const { pathname } = useRouter();
@@ -11,7 +12,9 @@ export const Header = () => {
   return (
     <StyledHeader>
       <HeaderContainer>
-        <Logo />
+        <LogoLink href='/'>
+          <Logo />
+        </LogoLink>
         <Links>
           <StyledLink href='/' pathname={pathname}>
             Поиск Вакансий

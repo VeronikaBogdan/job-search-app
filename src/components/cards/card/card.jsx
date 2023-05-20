@@ -17,6 +17,7 @@ export const Card = ({ profession, firmName, location, typeOfWork, paymentFrom, 
 
   const isVacancyPage = pathname === '/vacancy/[id]';
 
+  console.log(Object.entries(localStorage));
   return (
     <Stack className={isVacancyPage ? classes.vacancyCard : classes.card} spacing={11}>
       <Flex justify='space-between'>

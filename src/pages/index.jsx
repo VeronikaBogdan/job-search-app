@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Grid, createStyles } from '@mantine/core';
+import { Grid, LoadingOverlay, createStyles } from '@mantine/core';
 
 import { getAuth } from '@/store/reducers/auth';
 import { getCatalogues } from '@/store/reducers/catalogues';
@@ -22,29 +22,42 @@ const useStyles = createStyles(() => ({
 const MainPage = () => {
   const dispatch = useDispatch();
   const { classes } = useStyles();
+  const [filteredData, setFilteredData] = useState({});
 
-  const { loading } = useSelector((state) => state.auth);
+  const { loading: isLoadingAuth } = useSelector((state) => state.auth);
+  const { loading: isLoadingCatalogues } = useSelector((state) => state.catalogues);
+  const { loading: isLoadingVacancies } = useSelector((state) => state.vacancies);
 
-  // localStorage.clear();
-  // console.log(localStorage.getItem('access_token'));
+  const isLoading = isLoadingCatalogues || isLoadingVacancies;
+
+  // sessionStorage.clear();
+  console.log('index:', typeof window !== 'undefined' ? Object.entries(sessionStorage) : null);
+  console.log('isLoadingAuth:', isLoadingAuth);
+
   useEffect(() => {
-    // dispatch(getAuth());
-    // !loading &&
+    // isLoadingAuth && dispatch(getAuth());
     dispatch(getCatalogues());
-    dispatch(getVacancies());
-  }, [dispatch]);
+    // !isLoadingAuth && dispatch(getCatalogues()) && dispatch(getVacancies());
+  }, [isLoadingAuth]);
+
+  const handleChangeFilteredData = (filteredData) => {
+    setFilteredData(filteredData);
+  };
 
   return (
-    <Layout>
-      <Grid columns={24} className={classes.wrapper}>
-        <Grid.Col span={7}>
-          <Filters />
-        </Grid.Col>
-        <Grid.Col span={17}>
-          <Cards isSearch />
-        </Grid.Col>
-      </Grid>
-    </Layout>
+    <>
+      {isLoading && <LoadingOverlay visible overlayBlur={3} overlayOpacity={0.3} />}
+      <Layout>
+        <Grid columns={24} className={classes.wrapper}>
+          <Grid.Col span={7}>
+            <Filters onChangeFilteredData={handleChangeFilteredData} />
+          </Grid.Col>
+          <Grid.Col span={17}>
+            <Cards isSearch filteredData={filteredData} />
+          </Grid.Col>
+        </Grid>
+      </Layout>
+    </>
   );
 };
 
