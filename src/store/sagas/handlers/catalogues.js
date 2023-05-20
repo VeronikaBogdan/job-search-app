@@ -6,7 +6,6 @@ export function* handleGetCatalogues() {
   try {
     const response = yield call(requestGetCatalogues);
     const { data } = response;
-    console.log('222');
     yield put(succeedCatalogues(data));
   } catch (error) {
     yield put(failCatalogues(error));

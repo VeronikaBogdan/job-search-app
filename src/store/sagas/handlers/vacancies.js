@@ -5,9 +5,8 @@ import { requestGetVacancies } from '../requests/vacancies';
 export function* handleGetVacancies(action) {
   try {
     const response = yield call(requestGetVacancies, action.searchData);
-    const { objects } = response.data;
-    console.log('333');
-    yield put(succeedVacancies(objects));
+    const { data } = response;
+    yield put(succeedVacancies(data));
   } catch (error) {
     yield put(failVacancies(error));
   }

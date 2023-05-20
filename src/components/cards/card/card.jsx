@@ -17,14 +17,17 @@ export const Card = ({ profession, firmName, location, typeOfWork, paymentFrom, 
 
   const isVacancyPage = pathname === '/vacancy/[id]';
 
-  console.log(Object.entries(localStorage));
+  const addToFavorite = (event) => event.preventDefault();
+
+  // console.log(Object.entries(localStorage));
+
   return (
     <Stack className={isVacancyPage ? classes.vacancyCard : classes.card} spacing={11}>
       <Flex justify='space-between'>
         <Title order={3} className={isVacancyPage ? classes.vacancyProfessionTitle : classes.professionTitle}>
           {profession}
         </Title>
-        <Favorite isFavorite={isFavorite} onClick={() => console.log('star!!!')} />
+        <Favorite isFavorite={isFavorite} onClick={addToFavorite} />
       </Flex>
       <Group>
         <Text className={isVacancyPage ? classes.vacancyPaymentText : classes.paymentText}>

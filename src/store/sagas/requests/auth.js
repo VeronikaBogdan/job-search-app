@@ -28,4 +28,4 @@ const config = {
   },
 };
 
-export const requestGetAuth = () => instance.get(`${HOST}/oauth2/password`, config);
+export const requestGetAuth = () => instance.get(`${HOST}/oauth2/password/`, config);
