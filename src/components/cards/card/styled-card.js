@@ -9,6 +9,7 @@ export const useStyles = createStyles((theme) => ({
 
     '&:hover': {
       cursor: 'pointer',
+      backgroundColor: theme.colors.blue[5],
     },
 
     '&:active': {

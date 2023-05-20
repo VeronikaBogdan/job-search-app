@@ -69,13 +69,13 @@ export const useStyles = createStyles((theme) => ({
     },
 
     '&[data-hovered]': {
-      '&, &:hover': {
+      '&:hover': {
         backgroundColor: theme.colors.blue[5],
       },
     },
 
     '&[data-selected]': {
-      '&, &:hover': {
+      '&:hover': {
         backgroundColor: theme.colors.blue[1],
       },
     },
@@ -89,12 +89,20 @@ export const useStyles = createStyles((theme) => ({
       border: `1px solid ${theme.colors.blue[1]}`,
     },
   },
-  selectWrapper: {
+  industryWrapper: {
+    borderRadius: '8px',
+    marginBottom: '8px',
     border: `1px solid ${theme.colors.grey[4]}`,
+
+    '&:hover': {
+      border: `1px solid ${theme.colors.blue[1]}`,
+    },
+  },
+  industryWrapperFocus: {
     borderRadius: '8px',
     marginBottom: '8px',
 
-    '&:hover, &:focus, &:focus-within': {
+    '&:focus, &:focus-within': {
       border: `1px solid ${theme.colors.blue[1]}`,
     },
 

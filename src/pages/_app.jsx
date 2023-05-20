@@ -1,6 +1,8 @@
 import Head from 'next/head';
-
+import { Provider } from 'react-redux';
 import { MantineProvider } from '@mantine/core';
+
+import store from '@/store/configureStore';
 
 import { theme } from '@/styles/theme';
 import '@/styles/globals.css';
@@ -16,9 +18,11 @@ const App = ({ Component, pageProps }) => (
       <link rel='preconnect' href='https://fonts.googleapis.com' />
       <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap' rel='stylesheet' />
     </Head>
-    <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
-      <Component {...pageProps} />
-    </MantineProvider>
+    <Provider store={store}>
+      <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
+        <Component {...pageProps} />
+      </MantineProvider>
+    </Provider>
   </>
 );
 

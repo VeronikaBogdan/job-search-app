@@ -19,15 +19,23 @@ export const Card = ({ profession, firmName, location, typeOfWork, paymentFrom, 
 
   return (
     <Stack className={isVacancyPage ? classes.vacancyCard : classes.card} spacing={11}>
-      <Group position='apart'>
+      <Flex justify='space-between'>
         <Title order={3} className={isVacancyPage ? classes.vacancyProfessionTitle : classes.professionTitle}>
-          {profession} {firmName}
+          {profession}
         </Title>
         <Favorite isFavorite={isFavorite} onClick={() => console.log('star!!!')} />
-      </Group>
+      </Flex>
       <Group>
         <Text className={isVacancyPage ? classes.vacancyPaymentText : classes.paymentText}>
-          з/п от {paymentFrom} {currency}
+          з/п{' '}
+          {paymentFrom === paymentTo
+            ? paymentFrom
+            : paymentTo === 0
+            ? `от ${paymentFrom}`
+            : paymentFrom === 0
+            ? `до ${paymentTo}`
+            : `${paymentFrom} - ${paymentTo}`}{' '}
+          {currency}
         </Text>
         <Point />
         <Text className={isVacancyPage ? classes.vacancyWorkText : classes.workText}>{typeOfWork}</Text>
