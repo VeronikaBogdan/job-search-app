@@ -1,6 +1,7 @@
+import Link from 'next/link';
 import { Button, Stack, Title } from '@mantine/core';
 
-import NoFavorites from '../../assets/svg/no-favorites.svg';
+import Images from 'public/assets/svg/index';
 
 import { useStyles } from './styled-empty-state';
 
@@ -9,11 +10,11 @@ export const EmptyState = () => {
 
   return (
     <Stack spacing={32} className={classes.wrapper}>
-      <NoFavorites />
+      <Images.NoVacancies />
       <Title order={3} className={classes.message}>
         Упс, здесь еще ничего нет!
       </Title>
-      <Button component='a' href='/' variant='light' className={classes.button}>
+      <Button component={Link} href='/' variant='light' className={classes.button}>
         Поиск Вакансий
       </Button>
     </Stack>

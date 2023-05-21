@@ -9,7 +9,7 @@ import { getVacancies } from '@/store/reducers/vacancies';
 import { Card } from '@/components/cards/card/card';
 import { Search } from '@/components/search/search';
 
-import { useStyles } from './styled-cards';
+import { useStyles } from './styled-cards-list';
 
 export const Cards = ({ isSearch, filteredData, vacanciesData }) => {
   const dispatch = useDispatch();

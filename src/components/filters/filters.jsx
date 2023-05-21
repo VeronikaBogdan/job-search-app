@@ -3,8 +3,7 @@ import { useSelector } from 'react-redux';
 import { useForm } from '@mantine/form';
 import { Box, Button, Group, NumberInput, Select, Title } from '@mantine/core';
 
-import DownIcon from '../../assets/svg/down.svg';
-import CrossIcon from '../../assets/svg/cross.svg';
+import Images from 'public/assets/svg';
 
 import { useStyles } from './styled-filters';
 
@@ -45,7 +44,7 @@ export const Filters = ({ onChangeFilteredData }) => {
           </Title>
           <Button
             classNames={{ root: classes.reset, rightIcon: classes.rightIcon }}
-            rightIcon={<CrossIcon />}
+            rightIcon={<Images.Cross />}
             onClick={() => form.reset()}
           >
             Сбросить все
@@ -61,7 +60,7 @@ export const Filters = ({ onChangeFilteredData }) => {
           data={industries.map((industry) => {
             return { value: industry.key, label: industry.title_trimmed };
           })}
-          rightSection={<DownIcon />}
+          rightSection={<Images.Down />}
           placeholder='Выберете отрасль'
           label='Отрасль'
           onDropdownOpen={handleDropdown}

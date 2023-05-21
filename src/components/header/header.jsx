@@ -1,10 +1,9 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-import Logo from '../../assets/svg/logo.svg';
+import Images from 'public/assets/svg/index';
 
 import { HeaderContainer, Links, LogoLink, StyledHeader, StyledLink } from './styled-header';
-import Link from 'next/link';
 
 export const Header = () => {
   const { pathname } = useRouter();
@@ -13,7 +12,7 @@ export const Header = () => {
     <StyledHeader>
       <HeaderContainer>
         <LogoLink href='/'>
-          <Logo />
+          <Images.Logo />
         </LogoLink>
         <Links>
           <StyledLink href='/' pathname={pathname}>

@@ -6,7 +6,7 @@ import { getAuth } from '@/store/reducers/auth';
 import { getCatalogues } from '@/store/reducers/catalogues';
 import { getVacancies } from '@/store/reducers/vacancies';
 
-import { Cards } from '@/components/cards/cards';
+import { Cards } from '@/components/cards/cards-list';
 import { Filters } from '@/components/filters/filters';
 import { Layout } from '@/components/layout/layout';
 

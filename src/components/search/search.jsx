@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import SearchIcon from '../../assets/svg/search.svg';
+import Images from 'public/assets/svg/index';
 
 import { SearchInput, SearchWrapper } from './styled-search';
 import { SearchButton } from '../buttons/buttons';
@@ -18,7 +18,7 @@ export const Search = ({ onChangeSearch }) => {
 
   return (
     <SearchWrapper>
-      <SearchIcon />
+      <Images.Search />
       <SearchInput
         placeholder='Введите название вакансии'
         type='search'

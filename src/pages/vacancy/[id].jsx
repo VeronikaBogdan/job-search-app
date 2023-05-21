@@ -8,7 +8,7 @@ import { Card } from '@/components/cards/card/card';
 
 import { getVacancy } from '@/store/reducers/vacancy';
 
-import { useStyles } from '@/styles/vacancy-styles';
+import { useStyles } from '@/pages/styles/styled-vacancy';
 
 const Vacancy = () => {
   const dispatch = useDispatch();
