@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { Flex, Group, Stack, Text, Title } from '@mantine/core';
@@ -9,17 +9,29 @@ import { Favorite } from '../../favorite/favorite';
 
 import { useStyles } from './styled-card';
 
-export const Card = ({ profession, firmName, location, typeOfWork, paymentFrom, paymentTo, currency }) => {
-  const { classes } = useStyles();
+export const Card = ({ vacancyId, profession, firmName, location, typeOfWork, paymentFrom, paymentTo, currency }) => {
   const { pathname } = useRouter();
+  const { classes } = useStyles();
 
-  const isFavorite = false;
+  const initialFavoriteState = Object.keys(localStorage).some((vacancy) => vacancy.slice(8) === vacancyId.toString());
+  const [isFavorite, setIsFavorite] = useState(initialFavoriteState);
 
   const isVacancyPage = pathname === '/vacancy/[id]';
 
-  const addToFavorite = (event) => event.preventDefault();
+  const toggleButton = (event) => {
+    event.preventDefault();
+    setIsFavorite(!isFavorite);
+  };
 
-  // console.log(Object.entries(localStorage));
+  const addToFavorites = (event) => {
+    toggleButton(event);
+    localStorage.setItem(`favorite${vacancyId}`, vacancyId);
+  };
+
+  const removeFromFavorites = (event) => {
+    toggleButton(event);
+    localStorage.removeItem(`favorite${vacancyId}`, vacancyId);
+  };
 
   return (
     <Stack className={isVacancyPage ? classes.vacancyCard : classes.card} spacing={11}>
@@ -27,7 +39,7 @@ export const Card = ({ profession, firmName, location, typeOfWork, paymentFrom, 
         <Title order={3} className={isVacancyPage ? classes.vacancyProfessionTitle : classes.professionTitle}>
           {profession}
         </Title>
-        <Favorite isFavorite={isFavorite} onClick={addToFavorite} />
+        <Favorite isFavorite={isFavorite} onClick={isFavorite ? removeFromFavorites : addToFavorites} />
       </Flex>
       <Group>
         <Text className={isVacancyPage ? classes.vacancyPaymentText : classes.paymentText}>

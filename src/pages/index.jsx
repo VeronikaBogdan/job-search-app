@@ -25,8 +25,8 @@ const MainPage = () => {
   const [filteredData, setFilteredData] = useState({});
 
   const { loading: isLoadingAuth } = useSelector((state) => state.auth);
-  const { loading: isLoadingCatalogues } = useSelector((state) => state.catalogues);
-  const { loading: isLoadingVacancies } = useSelector((state) => state.vacancies);
+  const { loading: isLoadingCatalogues, error: isErrorCatalogues } = useSelector((state) => state.catalogues);
+  const { loading: isLoadingVacancies, error: isErrorVacancies } = useSelector((state) => state.vacancies);
 
   const isLoading = isLoadingCatalogues || isLoadingVacancies;
 

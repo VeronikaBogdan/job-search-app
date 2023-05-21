@@ -12,9 +12,9 @@ import { useStyles } from '@/styles/vacancy-styles';
 
 const Vacancy = () => {
   const dispatch = useDispatch();
+  const { asPath } = useRouter();
   const { classes } = useStyles();
   const { vacancy, loading } = useSelector((state) => state.vacancy);
-  const { asPath } = useRouter();
 
   const vacancyId = asPath.slice(9);
 
@@ -29,6 +29,7 @@ const Vacancy = () => {
       ) : (
         <Stack className={classes.content}>
           <Card
+            vacancyId={vacancyId}
             profession={vacancy.profession}
             firmName={vacancy.firm_name}
             location={vacancy.town?.title}
