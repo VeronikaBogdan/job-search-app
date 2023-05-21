@@ -1,17 +1,19 @@
-import { Layout } from '@/components/layout/layout';
+import { useEffect, useState } from 'react';
 
+import { Layout } from '@/components/layout/layout';
 import { EmptyState } from '@/components/empty-state/empty-state';
-import { Cards } from '@/components/cards/cards-list';
+import { CardsList } from '@/components/cards/cards-list';
 
 const FavoritesPage = () => {
-  const favorites = Object.keys(localStorage).filter((vacancy) => vacancy.slice(0, 8) === 'favorite');
+  const [allFavorites, setAllFavorites] = useState([]);
 
-  return (
-    <Layout>
-      {/* <Cards vacanciesData={favorites} /> */}
-      <EmptyState />
-    </Layout>
-  );
+  useEffect(() => {
+    if (typeof window !== 'undefined' && localStorage) {
+      setAllFavorites(Object.keys(localStorage).filter((vacancy) => vacancy.slice(0, 8) === 'favorite'));
+    }
+  }, []);
+
+  return <Layout>{!!allFavorites.length ? <CardsList vacanciesIds={allFavorites} /> : <EmptyState />}</Layout>;
 };
 
 export default FavoritesPage;

@@ -13,3 +13,14 @@ export const getSalaryRange = (paymentFrom, paymentTo) => {
 
   return `${paymentFrom} - ${paymentTo}`;
 };
+
+export const getAllFavorites = () => {
+  if (typeof window !== 'undefined' && localStorage) {
+    return Object.keys(localStorage).filter((vacancy) => vacancy.slice(0, 8) === 'favorite');
+  }
+
+  return {};
+};
+
+export const getInitialFavoriteState = (vacancyId) =>
+  Object.keys(localStorage).some((vacancy) => vacancy.slice(8) === vacancyId.toString());

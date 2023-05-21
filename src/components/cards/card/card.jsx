@@ -1,25 +1,30 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 
 import { Flex, Group, Stack, Text, Title } from '@mantine/core';
 
 import Images from 'public/assets/svg/index';
 
+import { getVacancies } from '@/store/reducers/vacancies';
+import { getAllFavorites, getInitialFavoriteState, getSalaryRange } from './card.helper';
+
 import { Favorite } from '@/components/favorite/favorite';
 
 import { useStyles } from './styled-card';
-import { getSalaryRange } from './card.helper';
 
-export const Card = ({ vacancyId, profession, firmName, location, typeOfWork, paymentFrom, paymentTo, currency }) => {
+export const Card = ({ vacancyId, profession, location, typeOfWork, paymentFrom, paymentTo, currency }) => {
+  const dispatch = useDispatch();
   const { pathname } = useRouter();
   const { classes } = useStyles();
 
-  const initialFavoriteState = Object.keys(localStorage).some((vacancy) => vacancy.slice(8) === vacancyId.toString());
+  const initialFavoriteState = getInitialFavoriteState(vacancyId);
   const [isFavorite, setIsFavorite] = useState(initialFavoriteState);
 
   const isVacancyPage = pathname === '/vacancy/[id]';
 
   const salaryRange = getSalaryRange(paymentFrom, paymentTo);
+  const allFavorites = getAllFavorites();
 
   const toggleButton = (event) => {
     event.preventDefault();
@@ -33,7 +38,9 @@ export const Card = ({ vacancyId, profession, firmName, location, typeOfWork, pa
 
   const removeFromFavorites = (event) => {
     toggleButton(event);
-    localStorage.removeItem(`favorite${vacancyId}`, vacancyId);
+    localStorage.removeItem(`favorite${vacancyId}`);
+
+    dispatch(getVacancies({ ids: allFavorites }));
   };
 
   return (

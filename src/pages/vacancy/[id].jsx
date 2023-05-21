@@ -31,7 +31,6 @@ const Vacancy = () => {
           <Card
             vacancyId={vacancyId}
             profession={vacancy.profession}
-            firmName={vacancy.firm_name}
             location={vacancy.town?.title}
             typeOfWork={vacancy.type_of_work?.title}
             paymentFrom={vacancy.payment_from}

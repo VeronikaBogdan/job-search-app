@@ -6,7 +6,7 @@ import { getAuth } from '@/store/reducers/auth';
 import { getCatalogues } from '@/store/reducers/catalogues';
 import { getVacancies } from '@/store/reducers/vacancies';
 
-import { Cards } from '@/components/cards/cards-list';
+import { CardsList } from '@/components/cards/cards-list';
 import { Filters } from '@/components/filters/filters';
 import { Layout } from '@/components/layout/layout';
 
@@ -53,7 +53,7 @@ const MainPage = () => {
             <Filters onChangeFilteredData={handleChangeFilteredData} />
           </Grid.Col>
           <Grid.Col span={17}>
-            <Cards isSearch filteredData={filteredData} />
+            <CardsList isSearch filteredData={filteredData} />
           </Grid.Col>
         </Grid>
       </Layout>
