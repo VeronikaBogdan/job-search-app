@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { Box, LoadingOverlay, Stack, TypographyStylesProvider } from '@mantine/core';
 
+import { getTokenFromStorage } from '@/utils/token-getter';
+
 import { Layout } from '@/components/layout/layout';
 import { Card } from '@/components/cards/card/card';
 
@@ -18,8 +20,10 @@ const Vacancy = () => {
 
   const vacancyId = asPath.slice(9);
 
+  const token = getTokenFromStorage('access_token');
+
   useEffect(() => {
-    dispatch(getVacancy(vacancyId));
+    dispatch(getVacancy({ vacancyId, token }));
   }, [dispatch]);
 
   return (

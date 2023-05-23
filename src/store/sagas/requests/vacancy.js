@@ -1,10 +1,12 @@
 import axios from 'axios';
 
 import { HOST } from '@/app-constants';
-import { headers } from '@/store/sagas/requests/headers';
+import { getHeaders } from '@/store/sagas/requests/headers';
 
 export const requestGetVacancy = (vacancyId) => {
-  return axios.get(`${HOST}/vacancies/${vacancyId}/`, {
+  const headers = getHeaders(vacancyId?.token);
+
+  return axios.get(`${HOST}/vacancies/${vacancyId.vacancyId}/`, {
     headers: headers,
   });
 };

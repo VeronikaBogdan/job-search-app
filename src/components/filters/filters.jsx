@@ -1,19 +1,25 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from '@mantine/form';
 import { Box, Button, Group, NumberInput, Select, Title } from '@mantine/core';
 
 import Images from 'public/assets/svg';
 
 import { useStyles } from './styled-filters';
+import { getVacancies } from '@/store/reducers/vacancies';
+import { getTokenFromStorage } from '@/utils/token-getter';
 
 export const Filters = ({ onChangeFilteredData }) => {
+  const dispatch = useDispatch();
+
+  const initialValues = {
+    catalogues: '',
+    payment_from: '',
+    payment_to: '',
+  };
+
   const form = useForm({
-    initialValues: {
-      catalogues: '',
-      payment_from: '',
-      payment_to: '',
-    },
+    initialValues: initialValues,
   });
   const [isDropdown, toggleDropdown] = useState(false);
   const { catalogues: industries } = useSelector((state) => state.catalogues);
@@ -27,12 +33,19 @@ export const Filters = ({ onChangeFilteredData }) => {
     label: classes.label,
   };
 
+  const token = getTokenFromStorage('access_token');
+
   const handleDropdown = () => {
     toggleDropdown(!isDropdown);
   };
 
   const handleSubmit = (filteredData) => {
     onChangeFilteredData(filteredData);
+  };
+
+  const handleReset = () => {
+    form.reset();
+    dispatch(getVacancies({ initialValues, token }));
   };
 
   return (
@@ -45,12 +58,13 @@ export const Filters = ({ onChangeFilteredData }) => {
           <Button
             classNames={{ root: classes.reset, rightIcon: classes.rightIcon }}
             rightIcon={<Images.Cross />}
-            onClick={() => form.reset()}
+            onClick={handleReset}
           >
             Сбросить все
           </Button>
         </Group>
         <Select
+          data-elem='industry-select'
           classNames={{
             ...classNames,
             item: classes.input,
@@ -68,6 +82,7 @@ export const Filters = ({ onChangeFilteredData }) => {
           {...form.getInputProps('catalogues', { type: 'input' })}
         />
         <NumberInput
+          data-elem='salary-from-input'
           classNames={{ ...classNames, wrapper: classes.wrapper }}
           placeholder='От'
           min={0}
@@ -76,13 +91,14 @@ export const Filters = ({ onChangeFilteredData }) => {
           {...form.getInputProps('payment_from')}
         />
         <NumberInput
+          data-elem='salary-to-input'
           classNames={{ ...classNames, wrapper: classes.wrapper }}
           placeholder='До'
           min={0}
           type='number'
           {...form.getInputProps('payment_to')}
         />
-        <Button type='submit' classNames={{ root: classes.submitButton }}>
+        <Button data-elem='search-button' type='submit' classNames={{ root: classes.submitButton }}>
           Применить
         </Button>
       </form>

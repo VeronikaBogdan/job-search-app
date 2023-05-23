@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Grid, LoadingOverlay, createStyles } from '@mantine/core';
 
-import { getAuth } from '@/store/reducers/auth';
 import { getCatalogues } from '@/store/reducers/catalogues';
 import { getVacancies } from '@/store/reducers/vacancies';
 
@@ -19,26 +18,19 @@ const useStyles = createStyles(() => ({
   },
 }));
 
-const MainPage = () => {
+const MainPage = ({ token }) => {
   const dispatch = useDispatch();
   const { classes } = useStyles();
   const [filteredData, setFilteredData] = useState({});
 
-  const { loading: isLoadingAuth } = useSelector((state) => state.auth);
-  const { loading: isLoadingCatalogues, error: isErrorCatalogues } = useSelector((state) => state.catalogues);
-  const { loading: isLoadingVacancies, error: isErrorVacancies } = useSelector((state) => state.vacancies);
+  const { loading: isLoadingCatalogues } = useSelector((state) => state.catalogues);
+  const { loading: isLoadingVacancies } = useSelector((state) => state.vacancies);
 
   const isLoading = isLoadingCatalogues || isLoadingVacancies;
 
-  // sessionStorage.clear();
-  console.log('index:', typeof window !== 'undefined' ? Object.entries(sessionStorage) : null);
-  console.log('isLoadingAuth:', isLoadingAuth);
-
   useEffect(() => {
-    // isLoadingAuth && dispatch(getAuth());
-    dispatch(getCatalogues());
-    // !isLoadingAuth && dispatch(getCatalogues()) && dispatch(getVacancies());
-  }, [isLoadingAuth]);
+    dispatch(getCatalogues({ token })) && dispatch(getVacancies({ token }));
+  }, [token]);
 
   const handleChangeFilteredData = (filteredData) => {
     setFilteredData(filteredData);

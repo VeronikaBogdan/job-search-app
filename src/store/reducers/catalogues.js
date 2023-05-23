@@ -2,8 +2,9 @@ export const CATALOGUES_REQUEST = 'CATALOGUES_REQUEST';
 export const CATALOGUES_SUCCESS = 'CATALOGUES_SUCCESS';
 export const CATALOGUES_FAILURE = 'CATALOGUES_FAILURE';
 
-export const getCatalogues = () => ({
+export const getCatalogues = (token) => ({
   type: CATALOGUES_REQUEST,
+  token,
 });
 
 export const succeedCatalogues = (catalogues) => ({

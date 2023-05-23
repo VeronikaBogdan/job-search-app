@@ -6,14 +6,16 @@ import { useRouter } from 'next/router';
 import { LoadingOverlay, Pagination, Stack } from '@mantine/core';
 
 import { COUNT, LIMIT_TOTAL } from '@/app-constants';
+
 import { getVacancies } from '@/store/reducers/vacancies';
+import { getAllFavorites } from '@/components/cards/card/card.helper';
+import { getTokenFromStorage } from '@/utils/token-getter';
 
 import { Card } from '@/components/cards/card/card';
+import { EmptyState } from '@/components/empty-state/empty-state';
 import { Search } from '@/components/search/search';
 
 import { useStyles } from './styled-cards-list';
-import { EmptyState } from '../empty-state/empty-state';
-import { getAllFavorites } from './card/card.helper';
 
 export const CardsList = ({ isSearch, filteredData, vacanciesIds }) => {
   const dispatch = useDispatch();
@@ -26,6 +28,7 @@ export const CardsList = ({ isSearch, filteredData, vacanciesIds }) => {
 
   const total = Math.ceil(vacancies.total / COUNT);
 
+  const token = getTokenFromStorage('access_token');
   const allFavorites = getAllFavorites();
   const vacanciesAmount = pathname === '/favorites' ? allFavorites.length : vacancies.objects?.length;
 
@@ -34,7 +37,10 @@ export const CardsList = ({ isSearch, filteredData, vacanciesIds }) => {
   };
 
   useEffect(() => {
-    dispatch(getVacancies({ ...filteredData, ...searchedData, page: activePage - 1, ids: vacanciesIds }));
+    token &&
+      dispatch(
+        getVacancies({ ...filteredData, ...searchedData, page: activePage - 1, ids: vacanciesIds, token: token })
+      );
   }, [activePage, filteredData, searchedData, vacanciesIds]);
 
   return (

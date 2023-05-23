@@ -7,6 +7,7 @@ import { Flex, Group, Stack, Text, Title } from '@mantine/core';
 import Images from 'public/assets/svg/index';
 
 import { getVacancies } from '@/store/reducers/vacancies';
+import { getTokenFromStorage } from '@/utils/token-getter';
 import { getAllFavorites, getInitialFavoriteState, getSalaryRange } from './card.helper';
 
 import { Favorite } from '@/components/favorite/favorite';
@@ -25,6 +26,7 @@ export const Card = ({ vacancyId, profession, location, typeOfWork, paymentFrom,
 
   const salaryRange = getSalaryRange(paymentFrom, paymentTo);
   const allFavorites = getAllFavorites();
+  const token = getTokenFromStorage('access_token');
 
   const toggleButton = (event) => {
     event.preventDefault();
@@ -40,16 +42,24 @@ export const Card = ({ vacancyId, profession, location, typeOfWork, paymentFrom,
     toggleButton(event);
     localStorage.removeItem(`favorite${vacancyId}`);
 
-    dispatch(getVacancies({ ids: allFavorites }));
+    token && dispatch(getVacancies({ ids: allFavorites, token: token }));
   };
 
   return (
-    <Stack className={isVacancyPage ? classes.vacancyCard : classes.card} spacing={11}>
+    <Stack
+      data-elem={`vacancy-${vacancyId}`}
+      className={isVacancyPage ? classes.vacancyCard : classes.card}
+      spacing={11}
+    >
       <Flex justify='space-between'>
         <Title order={3} className={isVacancyPage ? classes.vacancyProfessionTitle : classes.professionTitle}>
           {profession}
         </Title>
-        <Favorite isFavorite={isFavorite} onClick={isFavorite ? removeFromFavorites : addToFavorites} />
+        <Favorite
+          vacancyId={vacancyId}
+          isFavorite={isFavorite}
+          onClick={isFavorite ? removeFromFavorites : addToFavorites}
+        />
       </Flex>
       <Group>
         <Text className={isVacancyPage ? classes.vacancyPaymentText : classes.paymentText}>

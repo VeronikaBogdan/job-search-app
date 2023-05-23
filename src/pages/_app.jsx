@@ -1,10 +1,10 @@
 import Head from 'next/head';
 import { Provider } from 'react-redux';
-import { MantineProvider } from '@mantine/core';
 
-import store from '@/store/configureStore';
+import authStore from '@/store/configureAuthStore';
 
-import { theme } from '@/styles/theme';
+import { AppComponent } from '@/components/app/app';
+
 import '@/styles/globals.css';
 
 const App = ({ Component, pageProps }) => (
@@ -18,10 +18,8 @@ const App = ({ Component, pageProps }) => (
       <link rel='preconnect' href='https://fonts.googleapis.com' />
       <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap' rel='stylesheet' />
     </Head>
-    <Provider store={store}>
-      <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
-        <Component {...pageProps} />
-      </MantineProvider>
+    <Provider store={authStore}>
+      <AppComponent Component={Component} pageProps={pageProps} />
     </Provider>
   </>
 );

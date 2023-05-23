@@ -17,7 +17,7 @@ export const Search = ({ onChangeSearch }) => {
   };
 
   return (
-    <SearchWrapper>
+    <SearchWrapper data-elem='search-input'>
       <Images.Search />
       <SearchInput
         placeholder='Введите название вакансии'
@@ -25,7 +25,7 @@ export const Search = ({ onChangeSearch }) => {
         value={searchTitle}
         onChange={handleSearchTitle}
       />
-      <SearchButton type='button' onClick={handleSubmit}>
+      <SearchButton data-elem='search-button' type='button' onClick={handleSubmit}>
         Поиск
       </SearchButton>
     </SearchWrapper>

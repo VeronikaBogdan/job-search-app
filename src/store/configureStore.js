@@ -6,14 +6,14 @@ import cataloguesReducer from './reducers/catalogues';
 import vacanciesReducer from './reducers/vacancies';
 import vacancyReducer from './reducers/vacancy';
 import {
-  watcherSagaForAuth,
+  // watcherSagaForAuth,
   watcherSagaForCatalogues,
   watcherSagaForVacancies,
   watcherSagaForVacancy,
 } from './sagas/rootSaga';
 
 const reducer = combineReducers({
-  auth: authReducer,
+  // auth: authReducer,
   catalogues: cataloguesReducer,
   vacancies: vacanciesReducer,
   vacancy: vacancyReducer,
@@ -25,7 +25,7 @@ const middleware = [sagaMiddleware];
 
 const store = createStore(reducer, {}, compose(applyMiddleware(...middleware)));
 
-sagaMiddleware.run(watcherSagaForAuth);
+// sagaMiddleware.run(watcherSagaForAuth);
 sagaMiddleware.run(watcherSagaForCatalogues);
 sagaMiddleware.run(watcherSagaForVacancies);
 sagaMiddleware.run(watcherSagaForVacancy);
