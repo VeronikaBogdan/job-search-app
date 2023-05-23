@@ -6,9 +6,10 @@ export const useStyles = createStyles((theme) => ({
     backgroundColor: theme.colors.grey[0],
     border: `1px solid ${theme.colors.grey[3]}`,
     borderRadius: '12px',
+    marginBottom: '10px',
 
     form: {
-      width: '275px',
+      width: '100%',
     },
   },
   formTitle: {
@@ -17,6 +18,16 @@ export const useStyles = createStyles((theme) => ({
     lineHeight: '20px',
     color: theme.colors.grey[7],
     marginBottom: '20px',
+
+    [`@media (max-width: 1060px)`]: {
+      marginBottom: 0,
+    },
+
+    [`@media (max-width: 900px)`]: {
+      fontSize: '18px',
+      lineHeight: '18px',
+      marginBottom: '10px',
+    },
   },
   reset: {
     padding: 0,
@@ -55,6 +66,12 @@ export const useStyles = createStyles((theme) => ({
     marginTop: '12px',
     marginBottom: '8px',
     color: theme.colors.grey[7],
+
+    [`@media (max-width: 900px)`]: {
+      fontSize: '15px',
+      lineHeight: '17px',
+      marginBottom: '10px',
+    },
   },
   input: {
     border: 0,
@@ -174,6 +191,21 @@ export const useStyles = createStyles((theme) => ({
 
     '&:active': {
       backgroundColor: theme.colors.blue[0],
+    },
+  },
+  searchButton: {
+    height: '32px',
+    borderRadius: '8px',
+
+    '&:hover': {
+      backgroundColor: theme.colors.blue[2],
+    },
+
+    '&:active': {
+      backgroundColor: theme.colors.blue[0],
+    },
+    [`@media (max-width: 500px)`]: {
+      padding: '3px 8px',
     },
   },
 }));

@@ -31,5 +31,9 @@ export const useStyles = createStyles((theme) => ({
     p: {
       marginBottom: '14px',
     },
+
+    [`@media (max-width: 768px)`]: {
+      margin: 0,
+    },
   },
 }));

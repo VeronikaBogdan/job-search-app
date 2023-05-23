@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { Button } from '@mantine/core';
 
 import Images from 'public/assets/svg/index';
 
+import { useStyles } from '../filters/styled-filters';
 import { SearchInput, SearchWrapper } from './styled-search';
-import { SearchButton } from '../buttons/buttons';
 
 export const Search = ({ onChangeSearch }) => {
   const [searchTitle, setSearchTitle] = useState('');
+  const { classes } = useStyles();
 
   const handleSearchTitle = (event) => {
     setSearchTitle(event.target.value);
@@ -17,17 +19,23 @@ export const Search = ({ onChangeSearch }) => {
   };
 
   return (
-    <SearchWrapper data-elem='search-input'>
+    <SearchWrapper>
       <Images.Search />
       <SearchInput
+        data-elem='search-input'
         placeholder='Введите название вакансии'
         type='search'
         value={searchTitle}
         onChange={handleSearchTitle}
       />
-      <SearchButton data-elem='search-button' type='button' onClick={handleSubmit}>
+      <Button
+        data-elem='search-button'
+        classNames={{ root: classes.searchButton }}
+        type='button'
+        onClick={handleSubmit}
+      >
         Поиск
-      </SearchButton>
+      </Button>
     </SearchWrapper>
   );
 };

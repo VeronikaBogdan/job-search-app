@@ -1,28 +1,37 @@
 import styled from 'styled-components';
 
-import { BLACK, GREY200, GREY500, MAINBLUE, WHITE } from '@/styles/constant';
+import { colors } from '@/styles/theme';
 
 export const SearchWrapper = styled.form`
   display: flex;
   align-items: center;
   padding: 0px 10px;
-  background: ${WHITE};
-  border: 1px solid ${GREY200};
+  background: ${colors.grey[0]};
+  border: 1px solid ${colors.grey[3]};
   border-radius: 8px;
 
   &:hover {
     cursor: pointer;
-    border: 1px solid ${MAINBLUE};
+    border: 1px solid ${colors.blue[1]};
   }
 
   &:focus-within {
-    border: 1px solid ${MAINBLUE};
+    border: 1px solid ${colors.blue[1]};
   }
 
   svg {
-    width: 16px;
-    height: 16px;
-    margin-right: 8px;
+    width: 20px;
+    height: 20px;
+    margin: 4px 4px 0 1px;
+  }
+
+  @media (max-width: 500px) {
+    padding: 0 5px;
+
+    svg {
+      width: 25px;
+      height: 25px;
+    }
   }
 `;
 
@@ -34,10 +43,15 @@ export const SearchInput = styled.input`
   font-size: 14px;
   line-height: 21px;
   letter-spacing: 0.4px;
-  color: ${BLACK};
+  color: ${colors.grey[7]};
 
   &::placeholder {
-    color: ${GREY500};
+    color: ${colors.grey[5]};
+
+    @media (max-width: 500px) {
+      font-size: 13px;
+      line-height: 17px;
+    }
   }
 
   &::-webkit-search-cancel-button {
@@ -45,7 +59,7 @@ export const SearchInput = styled.input`
   }
 
   &:focus {
-    caret-color: ${MAINBLUE};
+    caret-color: ${colors.blue[1]};
     outline: none;
   }
 `;

@@ -8,14 +8,13 @@ export const Container = styled.div`
 
   @media (max-width: 768px) {
     max-width: 640px;
+    width: calc(100vw - 50px);
+    margin-top: 25px;
   }
 
-  @media (max-width: 320px) {
-    max-width: 288px;
+  @media (max-width: 500px) {
     width: 100%;
+    width: calc(100vw - 20px);
+    margin-top: 10px;
   }
-`;
-
-export const ColumnContainer = styled(Container)`
-  flex-direction: column;
 `;

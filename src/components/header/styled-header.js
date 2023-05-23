@@ -1,12 +1,11 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { BLACK, MAINBLUE, WHITE } from '@/styles/constant';
+import { colors } from '@/styles/theme';
 import { Container } from '@/components/layout/styled-layout';
 
 export const StyledHeader = styled.header`
-  background-color: ${WHITE};
+  background-color: ${colors.grey[0]};
 `;
 
 export const HeaderContainer = styled(Container)`
@@ -15,6 +14,23 @@ export const HeaderContainer = styled(Container)`
   align-items: center;
   position: relative;
   margin-top: 0;
+
+  div:first-child {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px 0px;
+    height: ${({ isOpen }) => (isOpen ? '110px' : '75px')};
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    div:first-child {
+      display: block;
+      position: absolute;
+      left: 10px;
+    }
+  }
 `;
 
 export const LogoLink = styled(Link)`
@@ -22,6 +38,10 @@ export const LogoLink = styled(Link)`
   height: 36px;
   position: absolute;
   left: 0;
+
+  @media (max-width: 768px) {
+    left: 45px;
+  }
 `;
 
 export const Links = styled.div`
@@ -30,7 +50,15 @@ export const Links = styled.div`
   max-width: 275px;
   width: 100%;
   padding: 32px 0px;
-  margin-right: 13px;
+  margin-right: 50px;
+
+  @media (max-width: 768px) {
+    display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+    padding: 0;
+    margin-left: 10px;
+    padding-top: 50px;
+    background-color: ${colors.grey[0]};
+  }
 `;
 
 export const StyledLink = styled(Link)`
@@ -38,5 +66,15 @@ export const StyledLink = styled(Link)`
   font-size: 16px;
   line-height: 20px;
   color: ${({ href, pathname }) =>
-    pathname === href || (pathname === '/vacancy/[id]' && href === '/') ? MAINBLUE : BLACK};
+    pathname === href || (pathname === '/vacancy/[id]' && href === '/') ? colors.blue[1] : colors.grey[7]};
+  background-color: ${colors.grey[0]};
+
+  &:hover {
+    color: ${colors.blue[2]};
+  }
+
+  @media (max-width: 500px) {
+    font-size: 14px;
+    line-height: 18px;
+  }
 `;

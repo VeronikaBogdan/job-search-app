@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { BLUE400, BLUE600, MAINBLUE, WHITE } from '@/styles/constant';
+import { colors } from '@/styles/theme';
 
 export const Button = styled.button`
   cursor: pointer;
@@ -8,20 +8,20 @@ export const Button = styled.button`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background: ${MAINBLUE};
+  background: ${colors.blue[1]};
   border: 0;
   border-radius: 8px;
   font-weight: 500;
   font-size: 14px;
   line-height: 21px;
-  color: ${WHITE};
+  color: ${colors.grey[0]};
 
   &:hover {
-    background: ${BLUE400};
+    background: ${colors.blue[2]};
   }
 
   &:active {
-    background: ${BLUE600};
+    background: ${colors.blue[0]};
   }
 `;
 

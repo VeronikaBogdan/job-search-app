@@ -1,5 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import { Burger } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 
 import Images from 'public/assets/svg/index';
 
@@ -7,14 +9,16 @@ import { HeaderContainer, Links, LogoLink, StyledHeader, StyledLink } from './st
 
 export const Header = () => {
   const { pathname } = useRouter();
+  const [opened, { toggle }] = useDisclosure(false);
 
   return (
     <StyledHeader>
-      <HeaderContainer>
+      <HeaderContainer isOpen={opened}>
+        <Burger opened={opened} onClick={toggle} />
         <LogoLink href='/'>
           <Images.Logo />
         </LogoLink>
-        <Links>
+        <Links isOpen={opened}>
           <StyledLink href='/' pathname={pathname}>
             Поиск Вакансий
           </StyledLink>

@@ -61,14 +61,14 @@ export const Card = ({ vacancyId, profession, location, typeOfWork, paymentFrom,
           onClick={isFavorite ? removeFromFavorites : addToFavorites}
         />
       </Flex>
-      <Group>
+      <Group className={classes.infoGroup}>
         <Text className={isVacancyPage ? classes.vacancyPaymentText : classes.paymentText}>
           з/п {salaryRange} {currency}
         </Text>
         <Images.Point />
         <Text className={isVacancyPage ? classes.vacancyWorkText : classes.workText}>{typeOfWork}</Text>
       </Group>
-      <Flex className={isVacancyPage && classes.vacancyLocationWrapper}>
+      <Flex className={classes.locationWrapper}>
         <Images.Location />
         <Text className={isVacancyPage ? classes.vacancyLocationText : classes.locationText}>{location}</Text>
       </Flex>
