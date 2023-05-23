@@ -12,7 +12,7 @@ import { START_VACANCY_ID_INDEX } from '@/app-constants';
 import { getVacancy } from '@/store/reducers/vacancy';
 import { getTokenFromStorage } from '@/utils/token-getter';
 
-import { useStyles } from '@/pages/styles/styled-vacancy';
+import { useStyles } from '@/styles/styled-vacancy';
 
 const Vacancy = () => {
   const dispatch = useDispatch();
