@@ -29,6 +29,7 @@ export const useStyles = createStyles((theme) => ({
       marginTop: '0',
     },
     p: {
+      fontWeight: '700',
       marginBottom: '14px',
     },
 

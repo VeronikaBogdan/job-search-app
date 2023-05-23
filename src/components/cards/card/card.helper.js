@@ -1,4 +1,10 @@
+import { FINAL_VACANCY_ID_INDEX } from '@/app-constants';
+
 export const getSalaryRange = (paymentFrom, paymentTo) => {
+  if (paymentFrom === 0 && paymentTo === 0) {
+    return 'договорная';
+  }
+
   if (paymentFrom === paymentTo) {
     return paymentFrom;
   }
@@ -16,11 +22,11 @@ export const getSalaryRange = (paymentFrom, paymentTo) => {
 
 export const getAllFavorites = () => {
   if (typeof window !== 'undefined' && localStorage) {
-    return Object.keys(localStorage).filter((vacancy) => vacancy.slice(0, 8) === 'favorite');
+    return Object.keys(localStorage).filter((vacancy) => vacancy.slice(0, FINAL_VACANCY_ID_INDEX) === 'favorite');
   }
 
   return {};
 };
 
 export const getInitialFavoriteState = (vacancyId) =>
-  Object.keys(localStorage).some((vacancy) => vacancy.slice(8) === vacancyId.toString());
+  Object.keys(localStorage).some((vacancy) => vacancy.slice(FINAL_VACANCY_ID_INDEX) === vacancyId.toString());

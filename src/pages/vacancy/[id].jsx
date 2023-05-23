@@ -7,6 +7,8 @@ import { Layout } from '@/components/layout/layout';
 import { Loader } from '@/components/loader/loader';
 import { Card } from '@/components/cards/card/card';
 
+import { START_VACANCY_ID_INDEX } from '@/app-constants';
+
 import { getVacancy } from '@/store/reducers/vacancy';
 import { getTokenFromStorage } from '@/utils/token-getter';
 
@@ -18,13 +20,13 @@ const Vacancy = () => {
   const { classes } = useStyles();
   const { vacancy, loading } = useSelector((state) => state.vacancy);
 
-  const vacancyId = asPath.slice(9);
+  const vacancyId = asPath.slice(START_VACANCY_ID_INDEX);
 
   const token = getTokenFromStorage('access_token');
 
   useEffect(() => {
-    dispatch(getVacancy({ vacancyId, token }));
-  }, [dispatch]);
+    token && dispatch(getVacancy({ vacancyId, token }));
+  }, [token]);
 
   return (
     <Layout>

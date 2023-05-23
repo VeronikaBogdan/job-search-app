@@ -1,4 +1,3 @@
-// export const HOST = 'https://startup-summer-proxy-production.up.railway.app/2.0';
 export const HOST = 'https://startup-summer-2023-proxy.onrender.com/2.0';
 export const X_SECRET_KEY = 'GEU4nvd3rej*jeh.eqp';
 export const LOGIN = 'sergei.stralenia@gmail.com';
@@ -9,3 +8,5 @@ export const CLIENT_SECRET =
 export const HR = '0';
 export const LIMIT_TOTAL = 125;
 export const COUNT = 4;
+export const START_VACANCY_ID_INDEX = 9;
+export const FINAL_VACANCY_ID_INDEX = 8;
