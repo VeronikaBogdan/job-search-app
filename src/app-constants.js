@@ -10,3 +10,4 @@ export const LIMIT_TOTAL = 125;
 export const COUNT = 4;
 export const START_VACANCY_ID_INDEX = 9;
 export const FINAL_VACANCY_ID_INDEX = 8;
+export const START_INDEX = 0;

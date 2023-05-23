@@ -29,11 +29,11 @@ export const useStyles = createStyles((theme) => ({
       marginTop: '0',
     },
     p: {
-      fontWeight: '700',
       marginBottom: '14px',
     },
 
     [`@media (max-width: 768px)`]: {
+      fontWeight: '700',
       margin: 0,
     },
   },

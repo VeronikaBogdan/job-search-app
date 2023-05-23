@@ -1,4 +1,4 @@
-import { FINAL_VACANCY_ID_INDEX } from '@/app-constants';
+import { FINAL_VACANCY_ID_INDEX, START_INDEX } from '@/app-constants';
 
 export const getSalaryRange = (paymentFrom, paymentTo) => {
   if (paymentFrom === 0 && paymentTo === 0) {
@@ -22,7 +22,9 @@ export const getSalaryRange = (paymentFrom, paymentTo) => {
 
 export const getAllFavorites = () => {
   if (typeof window !== 'undefined' && localStorage) {
-    return Object.keys(localStorage).filter((vacancy) => vacancy.slice(0, FINAL_VACANCY_ID_INDEX) === 'favorite');
+    return Object.keys(localStorage).filter(
+      (vacancy) => vacancy.slice(START_INDEX, FINAL_VACANCY_ID_INDEX) === 'favorite'
+    );
   }
 
   return {};

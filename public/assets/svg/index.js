@@ -1,6 +1,6 @@
 import Cross from './cross.svg';
 import Down from './down.svg';
-import Location from './Location.svg';
+import Location from './location.svg';
 import Logo from './logo.svg';
 import NoVacancies from './no-vacancies.svg';
 import Point from './point.svg';

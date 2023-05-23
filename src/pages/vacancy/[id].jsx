@@ -25,7 +25,7 @@ const Vacancy = () => {
   const token = getTokenFromStorage('access_token');
 
   useEffect(() => {
-    token && dispatch(getVacancy({ vacancyId, token }));
+    dispatch(getVacancy({ vacancyId, token }));
   }, [token]);
 
   return (
