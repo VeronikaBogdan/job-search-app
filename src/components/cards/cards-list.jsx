@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import { LoadingOverlay, Pagination, Stack } from '@mantine/core';
+import { Pagination, Stack } from '@mantine/core';
 
 import { COUNT, LIMIT_TOTAL } from '@/app-constants';
 
@@ -37,15 +37,11 @@ export const CardsList = ({ isSearch, filteredData, vacanciesIds }) => {
   };
 
   useEffect(() => {
-    token &&
-      dispatch(
-        getVacancies({ ...filteredData, ...searchedData, page: activePage - 1, ids: vacanciesIds, token: token })
-      );
-  }, [activePage, filteredData, searchedData, vacanciesIds]);
+    dispatch(getVacancies({ ...filteredData, ...searchedData, page: activePage - 1, ids: vacanciesIds, token: token }));
+  }, [filteredData, searchedData, activePage, vacanciesIds]);
 
   return (
     <>
-      {loading && <LoadingOverlay visible overlayBlur={3} overlayOpacity={0.3} />}
       <Stack className={isSearch ? classes.content : classes.wrapper} spacing={14}>
         {isSearch && <Search onChangeSearch={handleChangeSearchFromInput} />}
         {!!vacanciesAmount ? (

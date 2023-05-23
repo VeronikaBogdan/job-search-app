@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Grid, LoadingOverlay } from '@mantine/core';
+import { Grid } from '@mantine/core';
 
 import { getCatalogues } from '@/store/reducers/catalogues';
 import { getVacancies } from '@/store/reducers/vacancies';
@@ -8,6 +8,7 @@ import { getVacancies } from '@/store/reducers/vacancies';
 import { CardsList } from '@/components/cards/cards-list';
 import { Filters } from '@/components/filters/filters';
 import { Layout } from '@/components/layout/layout';
+import { Loader } from '@/components/loader/loader';
 
 import { useStyles } from './styles/styled-index';
 
@@ -22,7 +23,7 @@ const MainPage = ({ token }) => {
   const isLoading = isLoadingCatalogues || isLoadingVacancies;
 
   useEffect(() => {
-    dispatch(getCatalogues({ token })) && dispatch(getVacancies({ token }));
+    token && dispatch(getCatalogues({ token })) && dispatch(getVacancies({ token }));
   }, [token]);
 
   const handleChangeFilteredData = (filteredData) => {
@@ -31,7 +32,7 @@ const MainPage = ({ token }) => {
 
   return (
     <>
-      {isLoading && <LoadingOverlay visible overlayBlur={3} overlayOpacity={0.3} />}
+      {isLoading && <Loader />}
       <Layout>
         <Grid columns={24} className={classes.wrapper}>
           <Grid.Col span={7} className={classes.desktopScreen}>

@@ -25,7 +25,6 @@ export const Card = ({ vacancyId, profession, location, typeOfWork, paymentFrom,
   const isVacancyPage = pathname === '/vacancy/[id]';
 
   const salaryRange = getSalaryRange(paymentFrom, paymentTo);
-  const allFavorites = getAllFavorites();
   const token = getTokenFromStorage('access_token');
 
   const toggleButton = (event) => {
@@ -42,7 +41,7 @@ export const Card = ({ vacancyId, profession, location, typeOfWork, paymentFrom,
     toggleButton(event);
     localStorage.removeItem(`favorite${vacancyId}`);
 
-    token && dispatch(getVacancies({ ids: allFavorites, token: token }));
+    token && dispatch(getVacancies({ ids: getAllFavorites(), token: token }));
   };
 
   return (

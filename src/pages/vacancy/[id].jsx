@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import { Box, LoadingOverlay, Stack, TypographyStylesProvider } from '@mantine/core';
-
-import { getTokenFromStorage } from '@/utils/token-getter';
+import { Box, Stack, TypographyStylesProvider } from '@mantine/core';
 
 import { Layout } from '@/components/layout/layout';
+import { Loader } from '@/components/loader/loader';
 import { Card } from '@/components/cards/card/card';
 
 import { getVacancy } from '@/store/reducers/vacancy';
+import { getTokenFromStorage } from '@/utils/token-getter';
 
 import { useStyles } from '@/pages/styles/styled-vacancy';
 
@@ -29,7 +29,7 @@ const Vacancy = () => {
   return (
     <Layout>
       {loading ? (
-        <LoadingOverlay visible overlayBlur={3} overlayOpacity={0.3} />
+        <Loader />
       ) : (
         <Stack className={classes.content}>
           <Card
